@@ -1,9 +1,3 @@
-// Required configuration:
-//	1. set user variable below;
-//	2. paste
-//	<script>let container = document.getElementById('graph');</script>
-//	before importing this to your HTML file.
-
 const user = 'coffeewithcream'
 
 const vis = require('vis-timeline')
