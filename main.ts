@@ -48,7 +48,7 @@ let graph = new vis.Graph2d(container, items, options)
 		await new Promise(f => setTimeout(f, 60000))
 		let result = isOnline()
 
-		if (!result && result)
+		if (!result && result === 1)
 		{
 			if (!result)
 			{
