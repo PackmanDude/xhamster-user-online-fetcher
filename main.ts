@@ -57,13 +57,15 @@ let graph = new vis.Graph2d(container, items, options)
 					x: new Date(),
 					y: 0
 				}
-				continue
 			}
 
-			let item =
+			if (result)
 			{
-				x: new Date(),
-				y: 1
+				let item =
+				{
+					x: new Date(),
+					y: 1
+				}
 			}
 			graph.itemsData.getDataSet().add(item)
 		}
