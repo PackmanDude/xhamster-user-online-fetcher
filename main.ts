@@ -10,13 +10,14 @@ function isOnline(user?: string): boolean
 	Http.send()
 
 	// check status
-	if (document.getElementsByClassName('online')[0] !== null)
+	const _parent = document.getElementsByClassName('details-row')[0]
+	if (_parent.getElementsByClassName('online')[0] !== undefined)
 	{
 		console.log('im gay')
 		return true
 	}
 
-	if (document.getElementsByClassName('offline')[0] !== null)
+	if (_parent.getElementsByClassName('offline')[0] !== undefined)
 	{
 		console.log('im offline')
 		return false
