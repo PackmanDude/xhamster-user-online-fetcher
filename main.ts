@@ -1,78 +1,31 @@
-const user = 'coffeewithcream'
-
-const vis = require('vis-timeline')
-const options =
+function isOnline(user?: string): boolean
 {
-  style: 'bar',
-  format:
-  {
-    majorLabels:
-    {
-      millisecond: 'h:mm:ss'
-    }
-  }
+	if (typeof user === 'undefined') { user = 'coffeewithcream' }
+
+	// request data
+	const Http = new XMLHttpRequest()
+	const url = `https://xhamster.com/users/${user}`
+	Http.responseType = 'document'
+	Http.open('GET', url)
+	Http.send()
+
+	// check status
+	if (document.getElementsByClassName('online')[0] !== null)
+	{
+		console.log('im gay')
+		return true
+	}
+
+	if (document.getElementsByClassName('offline')[0] !== null)
+	{
+		console.log('im offline')
+		return false
+	}
+
+	else
+	{
+		console.log('unexpected error occured')
+	}
 }
 
-const Http = new XMLHttpRequest()
-const url = `https://xhamster.com/users/${user}`
-Http.responseType = 'document'
-Http.open('GET', url)
-Http.send()
-
-let items = []
-
-function isOnline()
-{
-	const _parent = document.getElementsByClassName('details-row')[0]
-
-	if (_parent.querySelector('#online') != null)
-	{
-		return 1
-	}
-
-	if (_parent.querySelector('#offline') != null)
-	{
-		return 0
-	}
-	console.log('unexpected error occured.')
-	return 2
-}
-
-let graph = new vis.Graph2d(container, items, options)
-
-(async () =>
-{
-	while (true)
-	// do
-	{
-		await new Promise(f => setTimeout(f, 60000))
-		let result = isOnline()
-
-		if (!result && result === 1)
-		{
-			if (!result)
-			{
-				let item =
-				{
-					x: new Date(),
-					y: 0
-				}
-			}
-
-			if (result)
-			{
-				let item =
-				{
-					x: new Date(),
-					y: 1
-				}
-			}
-			graph.itemsData.getDataSet().add(item)
-		}
-		// debug
-		else
-		{
-			console.log('error at async func.')
-		}
-	}
-})()
+isOnline()
